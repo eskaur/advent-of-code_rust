@@ -1,5 +1,7 @@
 use std::io::BufRead;
 
+use aoc_2024::get_single_path_as_arg;
+
 struct Input {
     lhs: Vec<u32>,
     rhs: Vec<u32>,
@@ -29,14 +31,8 @@ fn read_input(path: &std::path::Path) -> Input {
 
 fn main() {
     // Read command line arguments
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() != 2 {
-        panic!("Expected exactly one argument.")
-    }
-    let file_path = std::path::Path::new(args.get(1).expect("Failed to get first argument"))
-        .canonicalize()
-        .expect("Failed to parse path");
-    let mut input = read_input(&file_path);
+    let path = get_single_path_as_arg();
+    let mut input = read_input(&path);
 
     // Do the first half
     input.lhs.sort_unstable();
