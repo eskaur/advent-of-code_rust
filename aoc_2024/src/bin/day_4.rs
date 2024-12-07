@@ -42,8 +42,8 @@ impl<T: Clone> Array2D<T> {
     }
 }
 
-fn check_match(sequence: &Vec<u8>, pattern: &str) -> bool {
-    std::str::from_utf8(&sequence).unwrap() == pattern
+fn check_match(sequence: &[u8], pattern: &str) -> bool {
+    std::str::from_utf8(sequence).unwrap() == pattern
 }
 
 fn main() {
@@ -54,11 +54,8 @@ fn main() {
     let width = lines.first().unwrap().len();
     let height = lines.len();
 
-    println!("{}", input);
-    println!("{}, {}", height, width);
-
     // Fill input into array
-    let mut array = Array2D::new(height, width, 0 as u8);
+    let mut array = Array2D::new(height, width, 0_u8);
     for (row, line) in lines.iter().enumerate() {
         for (col, character) in line.as_bytes().iter().enumerate() {
             array.set(row as i64, col as i64, *character).unwrap();

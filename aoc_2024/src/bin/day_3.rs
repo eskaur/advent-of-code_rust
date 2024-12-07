@@ -34,7 +34,7 @@ fn main() {
         let next = pattern[inext];
 
         if next == b'X' {
-            if (b'0'..=b'9').contains(&char) {
+            if char.is_ascii_digit() {
                 // Still parsing a number
                 continue;
             } else if char == pattern[inext + 1] {
